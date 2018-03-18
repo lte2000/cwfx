@@ -1,10 +1,7 @@
 # coding: utf-8
 
-
 import os
-
 #os.environ['TDX_DEBUG'] = "1"
-
 from pytdx.hq import TdxHq_API
 from pytdx.params import TDXParams
 import pandas as pd
@@ -102,71 +99,71 @@ if __name__ == '__main__':
 
     # pytdx bug
     bug_columns = [
-    "zhigonggu",
-    "zongzichan",
-    "liudongzichan",
-    "gudingzichan",
-    "wuxingzichan",
-    "liudongfuzhai",
-    "changqifuzhai",
-    "zibengongjijin",
-    "jingzichan",
-    "zhuyingshouru",
-    "zhuyinglirun",
-    "yingshouzhangkuan",
-    "yingyelirun",
-    "touzishouyu",
-    "jingyingxianjinliu",
-    "zongxianjinliu",
-    "cunhuo",
-    "lirunzonghe",
-    "shuihoulirun",
-    "jinglirun",
-    "weifenpeilirun"
+        "zhigonggu",
+        "zongzichan",
+        "liudongzichan",
+        "gudingzichan",
+        "wuxingzichan",
+        "liudongfuzhai",
+        "changqifuzhai",
+        "zibengongjijin",
+        "jingzichan",
+        "zhuyingshouru",
+        "zhuyinglirun",
+        "yingshouzhangkuan",
+        "yingyelirun",
+        "touzishouyu",
+        "jingyingxianjinliu",
+        "zongxianjinliu",
+        "cunhuo",
+        "lirunzonghe",
+        "shuihoulirun",
+        "jinglirun",
+        "weifenpeilirun"
     ]
 
     for c in bug_columns:
         finance_df[c] = finance_df[c] / 10
 
     finance_df = finance_df.rename(columns={
-        'market':'市场',
-        'code':'代码',
-        'name':'名称',
-        'liutongguben':'流通股本',
-        'province':'地区',
-        'industry':'行业',
-        'updated_date':'更新日期',
-        'ipo_date':'上市日期',
-        'zongguben':'总股本',
-        'guojiagu':'国家股',
-        'faqirenfarengu':'发起人法人股',
-        'farengu':'法人股',
-        'bgu':'B股',
-        'hgu':'H股',
-        'zhigonggu':'职工股',
-        'zongzichan':'总资产',
-        'liudongzichan':'流动资产',
-        'gudingzichan':'固定资产',
-        'wuxingzichan':'无形资产',
-        'gudongrenshu':'股东人数',
-        'liudongfuzhai':'流动负债',
-        'changqifuzhai':'长期负债',
-        'zibengongjijin':'资本公积金',
-        'jingzichan':'净资产',
-        'zhuyingshouru':'主营收入',
-        'zhuyinglirun':'主营利润',
-        'yingshouzhangkuan':'应收账款',
-        'yingyelirun':'营业利润',
-        'touzishouyu':'投资收益',
-        'jingyingxianjinliu':'经营现金流',
-        'zongxianjinliu':'总现金流',
-        'cunhuo':'存货',
-        'lirunzonghe':'利润总和',
-        'shuihoulirun':'税后利润',
-        'jinglirun':'净利润',
-        'weifenpeilirun':'未分配利润',
-        'meigujingzichan':'每股净资产',
-        'baoliu2':'baoliu2'
+        'market': '市场',
+        'code': '代码',
+        'name': '名称',
+        'liutongguben': '流通股本',
+        'province': '地区',
+        'industry': '行业',
+        'updated_date': '更新日期',
+        'ipo_date': '上市日期',
+        'zongguben': '总股本',
+        'guojiagu': '国家股',
+        'faqirenfarengu': '发起人法人股',
+        'farengu': '法人股',
+        'bgu': 'B股',
+        'hgu': 'H股',
+        'zhigonggu': '职工股',
+        'zongzichan': '总资产',
+        'liudongzichan': '流动资产',
+        'gudingzichan': '固定资产',
+        'wuxingzichan': '无形资产',
+        'gudongrenshu': '股东人数',
+        'liudongfuzhai': '流动负债',
+        'changqifuzhai': '长期负债',
+        'zibengongjijin': '资本公积金',
+        'jingzichan': '净资产',
+        'zhuyingshouru': '主营收入',
+        'zhuyinglirun': '主营利润',
+        'yingshouzhangkuan': '应收账款',
+        'yingyelirun': '营业利润',
+        'touzishouyu': '投资收益',
+        'jingyingxianjinliu': '经营现金流',
+        'zongxianjinliu': '总现金流',
+        'cunhuo': '存货',
+        'lirunzonghe': '利润总和',
+        'shuihoulirun': '税后利润',
+        'jinglirun': '净利润',
+        'weifenpeilirun': '未分配利润',
+        'meigujingzichan': '每股净资产',
+        'baoliu2': 'baoliu2'
     })
 
 

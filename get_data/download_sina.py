@@ -13,11 +13,15 @@ logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+sleep_list = [0.975472863353, 0.512082061907, 0.963594279676, 0.404375406937, 0.89212466871, 0.408083302649, 0.782775657789, 0.792513790796, 0.984610670022, 0.870269809242, 0.756699973299, 0.357260174607, 0.385469977995, 0.819587823578, 0.784420669891, 0.993681828474, 0.788971213721]
+sleep_list_len = len(sleep_list)
+current_sleep = 0
+
 random.seed()
 
-lrb_base_url = 'http://money.finance.sina.com.cn/corp/go.php/vDOWN_ProfitStatement/displaytype/4/stockid/{}/ctrl/all.phtml'
-llb_base_url = 'http://money.finance.sina.com.cn/corp/go.php/vDOWN_CashFlow/displaytype/4/stockid/{}/ctrl/all.phtml'
-fzb_base_url = 'http://money.finance.sina.com.cn/corp/go.php/vDOWN_BalanceSheet/displaytype/4/stockid/{}/ctrl/all.phtml'
+lrb_base_url = 'http://money.finance.sina.com.cn/corp/go.php/vDOWN_ProfitStatement/displaytype/4/stockid/{0}/ctrl/all.phtml'
+llb_base_url = 'http://money.finance.sina.com.cn/corp/go.php/vDOWN_CashFlow/displaytype/4/stockid/{0}/ctrl/all.phtml'
+fzb_base_url = 'http://money.finance.sina.com.cn/corp/go.php/vDOWN_BalanceSheet/displaytype/4/stockid/{0}/ctrl/all.phtml'
 
 headers = {
     'User-Agent': 'Mozilla/5.0',
@@ -40,7 +44,7 @@ def download_as(url, filename, max_retry=3, retry_count=0):
             if retry_count < max_retry:
                 retry_count += 1
                 sleep_time = retry_count * 12 * 60
-                logger.info("sleep {} and retry {}".format(sleep_time, retry_count))
+                logger.info("sleep {0} and retry {1}".format(sleep_time, retry_count))
                 time.sleep(sleep_time)
                 return download_as(url, filename, max_retry, retry_count)
             else:
@@ -52,7 +56,7 @@ def download_as(url, filename, max_retry=3, retry_count=0):
         if retry_count < max_retry:
             retry_count += 1
             sleep_time = retry_count * 3
-            logger.info("sleep {} and retry {}".format(sleep_time, retry_count))
+            logger.info("sleep {0} and retry {1}".format(sleep_time, retry_count))
             time.sleep(sleep_time)
             return download_as(url, filename, max_retry, retry_count)
     except Exception as e:
@@ -63,7 +67,12 @@ def download_as(url, filename, max_retry=3, retry_count=0):
         result = True
 
     # wait 0.2~2.0 seconds to avoid be banned
-    time.sleep(0.2 + random.random()*1.8)
+    sleep_time = (0.4 + random.random()*1.8)
+    #global current_sleep
+    #sleep_time = sleep_list[current_sleep % sleep_list_len]
+    #current_sleep += 1
+    logger.debug("sleep {0}".format(sleep_time))
+    time.sleep(sleep_time)
     return result
 
 
@@ -95,7 +104,7 @@ def download_llb(symbol):
 
 
 if __name__ == '__main__':
-    with io.open('symbol.txt', 'r', encoding='utf-8') as f:
+    with io.open('..\\all_other_data\\symbol.txt', 'r', encoding='utf-8') as f:
         symbol = [s.strip() for s in f.readlines()]
 
     pool = Pool(1)
